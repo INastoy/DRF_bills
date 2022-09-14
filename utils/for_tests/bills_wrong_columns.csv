@@ -1,0 +1,10 @@
+client_name,client_org,№,date,service
+OOO Client1Org1,3,22222,03.04.2021,прием гинеколога первичный
+client1,OOO Client1Org1,1,10000,01.04.2021,-
+client1,OOO Client1Org1,10,"1111,1",10.04.2021,забор биоматериала
+client1,OOO Client1Org1,2,3333,02.04.2021,прием терапевта повторный
+client1,OOO Client1Org1,2,3333,02.04.2021,прием терапевта повторный
+client1,OOO Client1Org1,wrong_num,3333,02.04.2021,прием терапевта повторный
+client1,OOO Client1Org2,5,3333,04.2021,прием терапевта повторный
+
+
