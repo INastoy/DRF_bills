@@ -1,5 +1,3 @@
-import logging
-
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -9,8 +7,6 @@ from bills.bills_parser.models import Bill
 from bills.bills_parser.parsers import CSVParser
 from bills.bills_parser.serializers import CSVSerializer, BillSerializer
 from bills.bills_parser.tasks import parse_file
-
-logger = logging.getLogger()
 
 
 class BillCreate(generics.GenericAPIView):
@@ -22,7 +18,7 @@ class BillCreate(generics.GenericAPIView):
         bills = request.data
         parse_file.delay(bills)
 
-        return Response(bills, status=status.HTTP_201_CREATED)
+        return Response('Файл успешно принят', status=status.HTTP_201_CREATED)
 
 
 class BillList(generics.ListAPIView):

@@ -1,4 +1,5 @@
 from datetime import date
+from time import sleep
 
 from django.urls import reverse
 from rest_framework import test, status
@@ -53,7 +54,7 @@ class BillsAPITestCase(test.APITestCase):
         self.url = reverse('add_bills')
         self.bills_count = Bill.objects.count()
 
-    # def test_create_bills_ok(self): #TODO Подружить тесты с Селери
+    # def test_create_bills_ok(self): # TODO Подружить тесты с Селери
     #     self.assertEqual(self.bills_count, Bill.objects.count())
     #     with open('utils/for_tests/bills_ok.csv', 'r', encoding='utf8') as file:
     #         data = {'file': file}
@@ -95,7 +96,6 @@ class BillsAPITestCase(test.APITestCase):
     # def test_stress_test(self):
     #     self.assertEqual(self.bills_count, Bill.objects.count())
     #     with open('utils/for_tests/bills_stress_test.csv', 'r', encoding='utf8') as file:
-    #     # with open('utils/for_tests/bills_ok.csv', 'r', encoding='utf8') as file:
     #         data = {'file': file}
     #         response = self.client.post(self.url, data=data)
     #         self.assertEqual(status.HTTP_201_CREATED, response.status_code)

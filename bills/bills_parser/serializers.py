@@ -34,16 +34,16 @@ class CSVSerializer(serializers.Serializer):
 
 class BulkCreateBillSerializer(serializers.ListSerializer):
 
-    def name_to_pk(self, data: list, queryset: QuerySet, column_name: str):
+    def name_to_pk(self, data: list, queryset: QuerySet, column_name: str):  # TODO переписать эту дичь
+        """
+        В validated_data заменяет {'client_name': 'client1'}  на {'client_name_id': 1},
+         при отсутствии client_name в БД - создает. Аналогично для Organization и Service.
+        """
         new_objects = []
-        last_created_obj = ''
         for num, line in enumerate(data):
             name = line.get(column_name).get('name')
-            if queryset.filter(name=name):
+            if queryset.filter(name=name).exists():
                 data[num][f'{column_name}_id'] = queryset.get(name=name).id
-                data[num].pop(column_name)
-            elif name in new_objects:
-                data[num][f'{column_name}_id'] = last_created_obj.id
                 data[num].pop(column_name)
             else:
                 new_objects.append(name)

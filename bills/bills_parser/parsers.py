@@ -35,7 +35,8 @@ class CSVParser(BaseParser):
 
 def parse_reader(reader):  # TODO для больших объемов данных переехать на pandas
     data = []
-    invoice_numbers = list(Bill.objects.values_list('client_name__name', 'invoice_number'))
+    invoice_numbers = list(
+        Bill.objects.select_related('client_name').values_list('client_name__name', 'invoice_number'))
 
     for num, line in enumerate(reader, start=1):
 

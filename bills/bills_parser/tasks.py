@@ -1,12 +1,9 @@
 import csv
-import logging
 
 from celery import shared_task
 
 from bills.bills_parser.parsers import parse_reader
 from bills.bills_parser.serializers import BillSerializer
-
-logger = logging.getLogger()
 
 
 @shared_task()
