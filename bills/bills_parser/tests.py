@@ -54,13 +54,13 @@ class BillsAPITestCase(test.APITestCase):
         self.url = reverse('add_bills')
         self.bills_count = Bill.objects.count()
 
-    # def test_create_bills_ok(self): # TODO Подружить тесты с Селери
-    #     self.assertEqual(self.bills_count, Bill.objects.count())
-    #     with open('utils/for_tests/bills_ok.csv', 'r', encoding='utf8') as file:
-    #         data = {'file': file}
-    #         response = self.client.post(self.url, data=data)
-    #         self.assertEqual(status.HTTP_201_CREATED, response.status_code)
-    #         self.assertEqual(self.bills_count + 22, Bill.objects.count())
+    def test_create_bills_ok(self):  # TODO Подружить тесты с Селери
+        self.assertEqual(self.bills_count, Bill.objects.count())
+        with open('utils/for_tests/bills_ok.csv', 'r', encoding='utf8') as file:
+            data = {'file': file}
+            response = self.client.post(self.url, data=data)
+            self.assertEqual(status.HTTP_201_CREATED, response.status_code)
+            self.assertEqual(self.bills_count + 22, Bill.objects.count())
 
     def test_create_bills_empty_file(self):
         self.assertEqual(self.bills_count, Bill.objects.count())
